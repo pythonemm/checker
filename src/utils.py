@@ -9,7 +9,7 @@ class Alignment(Enum):
     JUSTIFY = 'JUSTIFY'
 
 
-def draw_table(table, alignment: Alignment) -> None:
+def draw_table(table: list[list], alignment: Alignment = Alignment.CENTER) -> None:
     columns_max_width = calculate_columns(table)
 
     for line in table:

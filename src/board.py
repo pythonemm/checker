@@ -1,12 +1,18 @@
+from src.piece import Piece, Color
+
+
 class Board:
     def __init__(self):
         self._board = [
-            ['-', 'B', '-', 'B', '-', 'B', '-', 'B'],
-            ['B', '-', 'B', '-', 'B', '-', 'B', '-'],
-            ['-', 'B', '-', 'B', '-', 'B', '-', 'B'],
+            ['-', Piece(Color('B')), '-', Piece(Color('B')), '-', Piece(Color('B')), '-', Piece(Color('B'))],
+            [Piece(Color('B')), '-', Piece(Color('B')), '-', Piece(Color('B')), '-', Piece(Color('B')), '-'],
+            ['-', Piece(Color('B')), '-', Piece(Color('B')), '-', Piece(Color('B')), '-', Piece(Color('B'))],
             ['-', '-', '-', '-', '-', '-', '-', '-'],
             ['-', '-', '-', '-', '-', '-', '-', '-'],
-            ['R', '-', 'R', '-', 'R', '-', 'R', '-'],
-            ['-', 'R', '-', 'R', '-', 'R', '-', 'R'],
-            ['R', '-', 'R', '-', 'R', '-', 'R', '-']
+            [Piece(Color('W')), '-', Piece(Color('W')), '-', Piece(Color('W')), '-', Piece(Color('W')), '-'],
+            ['-', Piece(Color('W')), '-', Piece(Color('W')), '-', Piece(Color('W')), '-', Piece(Color('W'))],
+            [Piece(Color('W')), '-', Piece(Color('W')), '-', Piece(Color('W')), '-', Piece(Color('W')), '-']
         ]
+
+    def get_board_as_table(self):
+        pass
