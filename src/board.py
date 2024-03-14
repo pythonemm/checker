@@ -8,8 +8,15 @@ class Board:
 
     def draw(self) -> None:
         board = []
-        for row in self._board:
-            row_as_str = [str(piece) if piece else '' for piece in row]
+        for row_index, row in enumerate(self._board):
+            row_as_str = []
+            for column_index, piece in enumerate(row):
+                if piece:
+                    row_as_str.append(str(piece))
+                elif (column_index + row_index) % 2 == 1:
+                    row_as_str.append('#')
+                else:
+                    row_as_str.append('')
             board.append(row_as_str)
 
         draw_table(board)

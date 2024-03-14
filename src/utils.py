@@ -10,13 +10,14 @@ class Alignment(Enum):
 
 
 def draw_table(table: list[list], alignment: Alignment = Alignment.CENTER) -> None:
-    columns_max_width = calculate_columns(table)
+    columns_width = calculate_columns_width(table)
+    # print_horizontal_line(columns_width)
 
     for line in table:
         line_as_str = '|'
         columns_index = 0
         for element in line:
-            max_columns_length = columns_max_width[columns_index]
+            max_columns_length = columns_width[columns_index]
             buffer_length = max_columns_length - len(element)
 
             if alignment == Alignment.CENTER:
@@ -33,8 +34,17 @@ def draw_table(table: list[list], alignment: Alignment = Alignment.CENTER) -> No
             columns_index += 1
         print(line_as_str)
 
+        # print_horizontal_line(columns_width)
 
-def calculate_columns(table):
+
+def print_horizontal_line(columns_width):
+    horizontal_line = '+'
+    for column_width in columns_width:
+        horizontal_line += '-' * column_width + '+'
+    print(horizontal_line)
+
+
+def calculate_columns_width(table):
     columns_max_width = []
     number_of_columns = len(table[0])
     for columns_index in range(number_of_columns):
