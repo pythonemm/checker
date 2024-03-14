@@ -45,5 +45,4 @@ def calculate_columns(table):
                 max_columns_length = len(element)
 
         columns_max_width.append(max_columns_length)
-    print(columns_max_width)
     return columns_max_width
