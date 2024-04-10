@@ -9,9 +9,23 @@ class Board:
     def move(self, from_position: tuple[int, int], to_position: tuple[int, int]) -> None:
         piece = self._board[from_position[0]][from_position[1]]
         to_position_value = self._board[to_position[0]][to_position[1]]
-        if piece and not to_position_value:
+        if piece and not to_position_value and self.is_valid_move(from_position, to_position):
             self._board[to_position[0]][to_position[1]] = piece
             self._board[from_position[0]][from_position[1]] = None
+
+    def is_valid_move(self, from_position: tuple[int, int], to_position: tuple[int, int]) -> bool:
+        piece = self._board[from_position[0]][from_position[1]]
+        if piece.color == Color.BLACK:
+            if from_position[0] - 1 == to_position[0]:
+                if abs(from_position[1] - to_position[1]) == 1:
+                    return True
+
+        elif piece.color == Color.WHITE:
+            if from_position[0] + 1 == to_position[0]:
+                if abs(from_position[1] - to_position[1]) == 1:
+                    return True
+
+        return False
 
     def get_board(self) -> list[list[Piece]]:
         return self._board
