@@ -56,20 +56,12 @@ class CheckerboardUI:
             self.last_square_clicked = None
         else:
             if self.last_square_clicked:
+                print(f'move from {self.last_square_clicked[0]} to {clicked_position}')
                 self.board.move(self.last_square_clicked, clicked_position)
                 self.last_square_clicked = None
             else:
                 self.last_square_clicked = clicked_position
 
-        piece = self.board.get_piece((row, col))
-        if piece:
-            print(row, col, event)
-            # Implement your logic to move the piece
-            pass
-            # For example, you can call your board's move method
-            # self.board.move_piece(piece, new_position)
-
-            # After moving the piece, redraw the board
         self.canvas.delete("all")
         self.draw_board()
 

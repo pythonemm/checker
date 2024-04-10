@@ -7,8 +7,11 @@ class Board:
         self._board = board
 
     def move(self, from_position: tuple[int, int], to_position: tuple[int, int]) -> None:
-        ...
-        #   TODO
+        piece = self._board[from_position[0]][from_position[1]]
+        to_position_value = self._board[to_position[0]][to_position[1]]
+        if piece and not to_position_value:
+            self._board[to_position[0]][to_position[1]] = piece
+            self._board[from_position[0]][from_position[1]] = None
 
     def get_board(self) -> list[list[Piece]]:
         return self._board
