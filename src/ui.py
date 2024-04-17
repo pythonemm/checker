@@ -5,9 +5,11 @@ from src.piece import Color
 
 class CheckerboardUI:
     PIECE_RADIUS = 20
+    SELECTED_COLOR = "#FF0000"
     DARK_COLOR = "#5D432C"
     LIGHT_COLOR = "#FFE8D6"
     SQUARE_SIZE = 50
+    last_square_clicked = None
 
     def __init__(self, master, board):
         self.master = master
@@ -18,9 +20,8 @@ class CheckerboardUI:
         self.canvas.pack()
 
         self.draw_board()
-        self.canvas.bind("<Button-1>", self.handle_click)
-
         self.last_square_clicked = None
+        self.canvas.bind("<Button-1>", self.handle_click)
 
     def draw_board(self):
         for row in range(8):
@@ -30,7 +31,9 @@ class CheckerboardUI:
                 x2 = x1 + self.SQUARE_SIZE
                 y2 = y1 + self.SQUARE_SIZE
 
-                if (row + col) % 2 == 0:
+                if self.last_square_clicked == (row, col):
+                    self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.SELECTED_COLOR, outline='')
+                elif (row + col) % 2 == 0:
                     self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.LIGHT_COLOR, outline='')
                 else:
                     self.canvas.create_rectangle(x1, y1, x2, y2, fill=self.DARK_COLOR, outline='')
@@ -46,6 +49,8 @@ class CheckerboardUI:
                     color = "black" if piece.color == Color.BLACK else "white"
                     self.canvas.create_oval(x - self.PIECE_RADIUS, y - self.PIECE_RADIUS,
                                             x + self.PIECE_RADIUS, y + self.PIECE_RADIUS, fill=color)
+                    if piece.is_queen:
+                        self.canvas.create_text(x, y, text="Q", fill="red", font=('Arial','15','bold'))
 
     def handle_click(self, event):
         col = event.x // self.SQUARE_SIZE
