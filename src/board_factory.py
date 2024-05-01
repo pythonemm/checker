@@ -27,3 +27,8 @@ class BoardFactory:
                 board_row.append(piece)
             board.append(board_row)
         return Board(board)
+
+if __name__ == '__main__':
+    file = '../initial_board.csv'
+    board = BoardFactory().build_from_csv(file)
+    print(board)
