@@ -4,6 +4,7 @@ from src.board_exporter import BoardExporter
 from src.board_factory import BoardFactory
 from src.piece import Color
 
+
 class CheckerboardUI:
     SQUARE_SIZE = 50
     PIECE_RADIUS = 20
@@ -88,9 +89,3 @@ class CheckerboardUI:
         if file_path:
             exporter = BoardExporter()
             exporter.export_board(self.board, file_path)
-
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = CheckerboardUI(root)
-    root.mainloop()
