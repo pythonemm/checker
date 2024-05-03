@@ -32,6 +32,7 @@ class CheckerboardUI:
         file_menu.add_command(label="Import Board", command=self.import_board)
         file_menu.add_command(label="Export Board", command=self.export_board)
         menubar.add_cascade(label="File", menu=file_menu)
+        menubar.add_command(label="Skip turn")
         self.master.config(menu=menubar)
 
     def draw_board(self):
